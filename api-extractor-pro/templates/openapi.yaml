@@ -1,0 +1,127 @@
+openapi: 3.1.0
+
+# =====================================================
+# 项目 OpenAPI 规范模板
+# 由 api-extractor-pro 自动生成
+# =====================================================
+
+info:
+  title: "{{项目名称}} API 文档"
+  version: "1.0.0"
+  description: |
+    {{项目描述}}
+
+    ## 认证方式
+    所有需要认证的接口均需在请求头中携带 Bearer Token。
+    Token 通过 `/api/user/login` 接口获取。
+
+  contact:
+    name: "开发团队"
+    email: "dev@example.com"
+
+servers:
+  - url: http://localhost:3000
+    description: 开发环境（MSW Mock 拦截）
+  - url: https://staging.api.example.com
+    description: 测试环境
+  - url: https://api.example.com
+    description: 生产环境
+
+tags:
+  - name: 用户管理
+    description: 用户注册、登录、信息管理
+  - name: "{{模块名}}"
+    description: "{{模块描述}}"
+
+# =====================================================
+# 安全定义
+# =====================================================
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: "登录后获取的 JWT Token"
+
+  # 公共 Schema
+  schemas:
+    # 统一响应格式
+    CommonResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: "状态码：200 成功，4xx 客户端错误，5xx 服务端错误"
+          example: 200
+        data:
+          description: "响应数据，失败时为 null"
+          nullable: true
+        message:
+          type: string
+          description: "提示信息"
+          example: "success"
+      required:
+        - code
+        - message
+
+    # 分页响应格式
+    PageResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items: {}
+              description: "数据列表"
+            total:
+              type: integer
+              description: "总条数"
+              example: 100
+            page:
+              type: integer
+              description: "当前页码"
+              example: 1
+            pageSize:
+              type: integer
+              description: "每页条数"
+              example: 10
+        message:
+          type: string
+          example: "success"
+
+    # 错误响应格式
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 400
+        data:
+          nullable: true
+          example: null
+        message:
+          type: string
+          example: "请求参数错误"
+
+# =====================================================
+# 接口定义（由脚本自动填充）
+# 注意：当前 generate_docs.py 脚本采用内联生成，未引用上述公共 Schema。
+# 上述 Schema 仅供参考，未来可扩展为 $ref 引用方式。
+# =====================================================
+paths:
+  # /api/[module]/[action]:
+  #   get/post/put/delete:
+  #     operationId: module.action
+  #     tags: [模块名]
+  #     summary: "接口描述"
+  #     parameters: [...]
+  #     requestBody: { ... }
+  #     responses:
+  #       "200": { description: "成功", content: { ... } }
+  #       "400": { description: "参数错误", content: { ... } }

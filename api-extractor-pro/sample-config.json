@@ -1,0 +1,10 @@
+{
+  "project_root": "/path/to/your/project",
+  "scope": ["src/api", "src/services", "src/request"],
+  "entry_hints": ["src/api", "src/request"],
+  "auth_mode": "bearer",
+  "output_dir": "/path/to/your/project",
+  "project_name": "我的项目",
+  "strict_mode": false,
+  "interactive": false
+}
