@@ -1,4 +1,5 @@
 # my-skills
+<<<<<<< HEAD
 
 个人 Agent skills 源码仓库。
 
@@ -27,3 +28,6 @@ git commit -m "chore: initialize my-skills repo"
 ```bash
 bash scripts/sync-to-agents.sh
 ```
+=======
+自用skills
+>>>>>>> 723163ebfd07c0e44d809ffb029d4867813ef8bb
