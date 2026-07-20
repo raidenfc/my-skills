@@ -1,0 +1,4 @@
+interface:
+  display_name: "源码产品文档"
+  short_description: "从全栈源码梳理业务规则并生成面向运营人员的产品说明文档"
+  default_prompt: "使用 $source-to-product-doc 阅读当前仓库，先输出待确认的业务大纲，再生成运营产品文档。"
